@@ -27,7 +27,7 @@
             <meta charset="utf-8" /> 
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title><?php 
-                if (isset($jurisdiction))
+                if (!empty($jurisdiction))
                     echo $country_code_mapping[$jurisdiction] . " | ";
                 
                 
