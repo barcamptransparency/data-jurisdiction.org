@@ -152,17 +152,17 @@
                     
                     if (is_callable("geoip_country_code_by_name"))
                     {
-                        if ($_SERVER['REMOTE_ADDR']) {
-                            $country_code = geoip_country_code_by_name ($_SERVER['REMOTE_ADDR']);
-                            $country_name = geoip_country_name_by_name ($_SERVER['REMOTE_ADDR']);
-
-                           $country_blurb = "You seem to be visiting from $country_name";
-                        } else if ($_SERVER['HTTP_X_FORWARDED_FOR']) {
+                        if ($_SERVER['HTTP_X_FORWARDED_FOR']) {
                             $country_code = geoip_country_code_by_name ($_SERVER['HTTP_X_FORWARDED_FOR']);
                             $country_name = geoip_country_name_by_name ($_SERVER['HTTP_X_FORWARDED_FOR']);
 
                            $country_blurb = "You seem to be visiting from $country_name";
-                      }
+                      } else if ($_SERVER['REMOTE_ADDR']) {
+                            $country_code = geoip_country_code_by_name ($_SERVER['REMOTE_ADDR']);
+                            $country_name = geoip_country_name_by_name ($_SERVER['REMOTE_ADDR']);
+
+                           $country_blurb = "You seem to be visiting from $country_name";
+                        }  
                     }
                 ?>
                 
