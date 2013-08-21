@@ -152,12 +152,18 @@
                     
                     if (is_callable("geoip_country_code_by_name"))
                     {
-                        $country_code = geoip_country_code_by_name ($_SERVER['REMOTE_ADDR']);
-                        $country_name = geoip_country_name_by_name ($_SERVER['REMOTE_ADDR']);
-                        
-                       $country_blurb = "You seem to be visiting from $country_name";
+                        if ($_SERVER['REMOTE_ADDR']) {
+                            $country_code = geoip_country_code_by_name ($_SERVER['REMOTE_ADDR']);
+                            $country_name = geoip_country_name_by_name ($_SERVER['REMOTE_ADDR']);
+
+                           $country_blurb = "You seem to be visiting from $country_name";
+                        } else if ($_SERVER['HTTP_X_FORWARDED_FOR']) {
+                            $country_code = geoip_country_code_by_name ($_SERVER['HTTP_X_FORWARDED_FOR']);
+                            $country_name = geoip_country_name_by_name ($_SERVER['HTTP_X_FORWARDED_FOR']);
+
+                           $country_blurb = "You seem to be visiting from $country_name";
+                      }
                     }
-                
                 ?>
                 
                 <p><?= $country_blurb;?>, <strong><a href="/country/<?= $country_code; ?>" class="">see which laws apply</a></strong> or <a href="https://github.com/barcamptransparency/data-jurisdiction.org" class="">get involved...</a></p>
