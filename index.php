@@ -87,6 +87,36 @@
         // Display landing page
         ?>
         
+          <div class="container theme-showcase">
+            
+            <div class="jumbotron">
+                <h1>Welcome to Data-Jurisdiction.org</h1>
+                <p>Increasingly, the internet is becoming fragmented and balkanised, with wildly different data protection laws in each country. </p>
+                <p>When communicating with someone, it is becoming vitally important to know where in the world they are (and where their data is stored) in order to know whether your conversation will remain private and your data kept safe.</p>
+                <p>Data-Jurisdiction.org is a community project which will attempt to catalogue the risks in each country, in plain English.</p>
+                
+                
+                <?php 
+                    $country_code = 'us';
+                    $country_name = 'United States';
+                    $country_blurb = 'Most cloud services are based in the US';
+                    
+                    if (is_callable("geoip_country_code_by_name"))
+                    {
+                        $country_code = geoip_country_code_by_name ($_SERVER['REMOTE_ADDR']);
+                        $country_name = geoip_country_name_by_name ($_SERVER['REMOTE_ADDR']);
+                        
+                                $country_code = geoip_country_code_by_name ("www.marcus-povey.co.uk");
+                            $country_name = geoip_country_name_by_name ("www.marcus-povey.co.uk");
+                            
+                       $country_blurb = "You seem to be visiting from $country_name";
+                    }
+                
+                ?>
+                
+                <p><?= $country_blurb;?>, <a href="/country/<?= $country_code; ?>" class="">see which laws apply &raquo;</a></p>
+              </div>
+        </div>
     
     
     
