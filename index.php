@@ -2,11 +2,22 @@
 
     header("Content-type: text/html; charset=UTF-8");
 
-    $jurisdiction = preg_replace("/[^a-zA-Z0-9\s]/", "", $_GET['_jurisdiction']);
+    $jurisdiction = strtoupper(preg_replace("/[^a-zA-Z0-9\s]/", "", $_GET['_jurisdiction']));
     if ($jurisdiction) {
         
-        $jurisdiction_data = parse_ini_file(dirname(__FILE__) . '/data/' . $jurisdiction . '.ini', true);
+        require_once(dirname(__FILE__) . '/data/countries/codes.php');
+        $file = dirname(__FILE__) . '/data/countries/' . $jurisdiction . '.ini';
         
+        if (file_exists($file)) {
+            $jurisdiction_data = parse_ini_file($file, true);
+            
+            if (!$jurisdiction_data) {
+                
+                // Render 404
+                header("HTTP/1.1 404 Not Found");
+                header("Status: 404");
+            }
+        }
     }
     
     
@@ -15,9 +26,9 @@
     <head>
             <meta charset="utf-8" /> 
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title><?php
-                if (isset($jurisdiction_data['name']))
-                    echo $jurisdiction_data['name'] . " | ";
+            <title><?php 
+                if (isset($jurisdiction))
+                    echo $country_code_mapping[$jurisdiction] . " | ";
                 
                 
             ?>data-jurisdiction.org</title>
@@ -62,9 +73,6 @@
         }
         else
         {
-            // Render 404
-            header("HTTP/1.1 404 Not Found");
-            header("Status: 404");
             
             ?>
     

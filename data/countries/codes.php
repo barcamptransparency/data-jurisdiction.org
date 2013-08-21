@@ -1,6 +1,7 @@
 <?php
 
-$codes = ["AF" => "AFGHANISTAN",
+$country_code_mapping = [
+"AF" => "AFGHANISTAN",
 "AX" => "ÅLAND ISLANDS",
 "AL" => "ALBANIA",
 "DZ" => "ALGERIA",
