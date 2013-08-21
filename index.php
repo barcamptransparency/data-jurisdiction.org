@@ -68,6 +68,47 @@
             
             ?>
     
+        <div class="container theme-showcase">
+            
+            
+            
+            <div class="jumbotron">
+                <h1 style="text-transform: capitalize;"><?= strtolower($country_code_mapping[$jurisdiction]); ?></h1>
+                
+                <?php if (isset($jurisdiction_data['good'])) { 
+                    foreach ($jurisdiction_data['good'] as $entry ) {
+
+                        ?>
+                <div class="alert alert-success"><?= $entry; ?></div>
+                        <?php
+                    }
+                } ?>
+                 
+                <?php if (isset($jurisdiction_data['bad'])) { 
+                    foreach ($jurisdiction_data['bad'] as $entry ) {
+
+                        ?>
+                <div class="alert alert-warning"><?= $entry; ?></div>
+                        <?php
+                    }
+                } ?>
+                
+                <?php if (isset($jurisdiction_data['ugly'])) { 
+                    foreach ($jurisdiction_data['ugly'] as $entry ) {
+
+                        ?>
+                <div class="alert alert-danger"><?= $entry; ?></div>
+                        <?php
+                    }
+                } ?>
+                <p>
+                    <a href="/" class="btn btn-lg">Forget.</a>
+                    <?php if (isset($jurisdiction_data['protestlink'])) { ?>
+                        <a href="<?= $jurisdiction_data['protestlink']; ?>" class="btn btn-danger btn-lg">Protest.</a>
+                    <?php } ?>
+                </p>
+              </div>
+        </div>
     
     <?php
         }
@@ -122,7 +163,7 @@
                 
                 ?>
                 
-                <p><?= $country_blurb;?>, <a href="/country/<?= $country_code; ?>" class="">see which laws apply &raquo;</a></p>
+                <p><?= $country_blurb;?>, <strong><a href="/country/<?= $country_code; ?>" class="">see which laws apply</a></strong> or <a href="https://github.com/barcamptransparency/data-jurisdiction.org" class="">get involved...</a></p>
               </div>
         </div>
     

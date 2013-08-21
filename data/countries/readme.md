@@ -16,3 +16,5 @@ good[] = "Another good point about the country"
 bad[] = "Bad point (warning)"
 
 ugly[] = "Big honking red flag"
+
+protestlink = "https://www.openrightsgroup.org/join/" ; Link to a suitable protest organisation
