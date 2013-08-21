@@ -155,9 +155,6 @@
                         $country_code = geoip_country_code_by_name ($_SERVER['REMOTE_ADDR']);
                         $country_name = geoip_country_name_by_name ($_SERVER['REMOTE_ADDR']);
                         
-                                $country_code = geoip_country_code_by_name ("www.marcus-povey.co.uk");
-                            $country_name = geoip_country_name_by_name ("www.marcus-povey.co.uk");
-                            
                        $country_blurb = "You seem to be visiting from $country_name";
                     }
                 
