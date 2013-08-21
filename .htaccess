@@ -16,8 +16,7 @@ Options -Indexes
 
 RewriteEngine on
 
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f 
-RewriteRule ^(.*)$ index.php?_jurisdiction=$1 [QSA]
+RewriteRule ^country\/([a-zA-z]+)\/$ /index.php?_jurisdiction=$1 [QSA]
+RewriteRule ^country\/([a-zA-z]+)$ /index.php?_jurisdiction=$1 [QSA]
 
 </IfModule>
