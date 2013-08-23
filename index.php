@@ -102,10 +102,15 @@
                     }
                 } ?>
                 <p>
-                    <a href="/" class="btn btn-lg">Forget.</a>
+                    
                     <?php if (isset($jurisdiction_data['protestlink'])) { ?>
+                        <a href="/" class="btn btn-lg">Forget.</a>
                         <a href="<?= $jurisdiction_data['protestlink']; ?>" class="btn btn-danger btn-lg">Protest.</a>
-                    <?php } ?>
+                    <?php } else {
+                        ?> 
+                            <a href="/" class="btn btn-lg">Ok.</a>
+                            <?php
+                    } ?>
                 </p>
               </div>
         </div>
