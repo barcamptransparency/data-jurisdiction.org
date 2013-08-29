@@ -2,10 +2,11 @@
 
     header("Content-type: text/html; charset=UTF-8");
 
+    require_once(dirname(__FILE__) . '/data/countries/codes.php');
+    
     $jurisdiction = strtoupper(preg_replace("/[^a-zA-Z0-9\s]/", "", $_GET['_jurisdiction']));
     if ($jurisdiction) {
         
-        require_once(dirname(__FILE__) . '/data/countries/codes.php');
         $file = dirname(__FILE__) . '/data/countries/' . $jurisdiction . '.ini';
         
         if (file_exists($file)) {
@@ -105,7 +106,7 @@
                     
                     <?php if (isset($jurisdiction_data['protestlink'])) { ?>
                         <a href="/" class="btn btn-lg">Forget.</a>
-                        <a href="<?= $jurisdiction_data['protestlink']; ?>" class="btn btn-danger btn-lg">Protest.</a>
+                        <a href="<?= $jurisdiction_data['protestlink']; ?>" target="_blank" class="btn btn-danger btn-lg">Protest.</a>
                     <?php } else {
                         ?> 
                             <a href="/" class="btn btn-lg">Ok.</a>
@@ -128,7 +129,7 @@
                 <h1>Here be Dragons!</h1>
                 <p>data-jurisdiction.org is a community driven project, and unfortunately we have no information on this country yet. </p>
                 <p>You can help out by forking the <a href="https://github.com/barcamptransparency/data-jurisdiction.org">project on github</a> and adding some data!</p>
-                <p><a href="https://github.com/barcamptransparency/data-jurisdiction.org" class="btn btn-primary btn-lg">Create this entry &raquo;</a></p>
+                <p><a href="https://github.com/barcamptransparency/data-jurisdiction.org" target="_blank" class="btn btn-primary btn-lg">Create this entry &raquo;</a></p>
               </div>
         </div>
     
@@ -171,7 +172,7 @@
                     }
                 ?>
                 
-                <p><?= $country_blurb;?>, <strong><a href="/country/<?= $country_code; ?>" class="">see which laws apply</a></strong> or <a href="https://github.com/barcamptransparency/data-jurisdiction.org" class="">get involved...</a></p>
+                <p><?= $country_blurb;?>, <strong><a href="/country/<?= $country_code; ?>" class="label label-danger">see which laws apply</a></strong> or <a href="https://github.com/barcamptransparency/data-jurisdiction.org" target="_blank" class="">get involved...</a></p>
               </div>
         </div>
     
@@ -185,6 +186,24 @@
 
 
 ?>
+        
+        <div class="container footer-links">
+            <?php 
+            
+            foreach ($country_code_mapping as $code => $name) {
+                $file = dirname(__FILE__) . '/data/countries/' . $code . '.ini';
+        
+                if (file_exists($file)) {
+                    ?>
+            
+            <a class="label label-default" href="/country/<?= $code; ?>"><?= $name; ?></a>
+            
+                    <?php
+                }
+            }
+            
+            ?>
+        </div>
 
     </body>
     <!-- Piwik -->
