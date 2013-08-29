@@ -17,7 +17,7 @@
                 // Render 404
                 header("HTTP/1.1 404 Not Found");
                 header("Status: 404");
-            }
+            } 
         }
     }
     
@@ -33,6 +33,19 @@
                 
                 
             ?>data-jurisdiction.org</title>
+            
+            <?php 
+                // Add some tracking and pingback stuff
+                if (!empty($jurisdiction)) {
+                    $permalink = "https://data-jurisdiction.org/country/$jurisdiction";
+                    ?>
+            
+                    <link href="<?= $permalink; ?>" rel="canonical" />
+                    <link href="http://pingback.marcus-povey.co.uk/webmention/datajurisdiction/" rel="http://webmention.org/" />
+                    <link rel="pingback" href="http://pingback.marcus-povey.co.uk/pingback/datajurisdiction/xmlrpc" />
+            <?php
+                }
+            ?>
             
             <link type="text/plain" rel="author" href="/humans.txt" />
             
